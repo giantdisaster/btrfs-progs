@@ -354,6 +354,9 @@ static void print_key_type(u8 type)
 	case BTRFS_BALANCE_ITEM_KEY:
 		printf("BALANCE_ITEM");
 		break;
+	case BTRFS_DEV_REPLACE_KEY:
+		printf("DEV_REPLACE_ITEM");
+		break;
 	case BTRFS_STRING_ITEM_KEY:
 		printf("STRING_ITEM");
 		break;
