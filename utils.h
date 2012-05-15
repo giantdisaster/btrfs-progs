@@ -19,6 +19,8 @@
 #ifndef __UTILS__
 #define __UTILS__
 
+#include "ctree.h"
+
 #define BTRFS_MKFS_SYSTEM_GROUP_SIZE (4 * 1024 * 1024)
 
 int make_btrfs(int fd, const char *device, const char *label,
@@ -46,4 +48,5 @@ int check_label(char *input);
 int get_mountpt(char *dev, char *mntpt, size_t size);
 
 int btrfs_scan_block_devices(int run_ioctl);
+int open_file_or_dir(const char *fname);
 #endif

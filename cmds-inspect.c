@@ -22,6 +22,7 @@
 
 #include "kerncompat.h"
 #include "ioctl.h"
+#include "utils.h"
 
 #include "commands.h"
 

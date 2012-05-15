@@ -26,6 +26,7 @@
 #include "ctree.h"
 #include "ioctl.h"
 #include "volumes.h"
+#include "utils.h"
 
 #include "commands.h"
 

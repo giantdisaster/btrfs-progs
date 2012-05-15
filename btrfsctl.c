@@ -63,34 +63,6 @@ static void print_usage(void)
 	exit(1);
 }
 
-static int open_file_or_dir(const char *fname)
-{
-	int ret;
-	struct stat st;
-	DIR *dirstream;
-	int fd;
-
-	ret = stat(fname, &st);
-	if (ret < 0) {
-		perror("stat:");
-		exit(1);
-	}
-	if (S_ISDIR(st.st_mode)) {
-		dirstream = opendir(fname);
-		if (!dirstream) {
-			perror("opendir");
-			exit(1);
-		}
-		fd = dirfd(dirstream);
-	} else {
-		fd = open(fname, O_RDWR);
-	}
-	if (fd < 0) {
-		perror("open");
-		exit(1);
-	}
-	return fd;
-}
 int main(int ac, char **av)
 {
 	char *fname = NULL;
