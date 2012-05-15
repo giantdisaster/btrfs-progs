@@ -357,6 +357,9 @@ static void print_key_type(u8 type)
 	case BTRFS_STRING_ITEM_KEY:
 		printf("STRING_ITEM");
 		break;
+	case BTRFS_DEV_STATS_KEY:
+		printf("DEV_STATS_ITEM");
+		break;
 	default:
 		printf("UNKNOWN");
 	};
@@ -608,6 +611,9 @@ void btrfs_print_leaf(struct btrfs_root *root, struct extent_buffer *l)
 			/* dirty, but it's simple */
 			str = l->data + btrfs_item_ptr_offset(l, i);
 			printf("\t\titem data %.*s\n", btrfs_item_size(l, item), str);
+			break;
+		case BTRFS_DEV_STATS_KEY:
+			printf("\t\tdevice stats\n");
 			break;
 		};
 		fflush(stdout);
