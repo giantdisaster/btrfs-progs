@@ -263,13 +263,13 @@ static int cmd_dev_stats(int argc, char **argv)
 	char c;
 	int fdres = -1;
 	int err = 0;
-	int cmd = BTRFS_IOC_GET_DEV_STATS;
+	__u64 flags = 0;
 
 	optind = 1;
 	while ((c = getopt(argc, argv, "z")) != -1) {
 		switch (c) {
 		case 'z':
-			cmd = BTRFS_IOC_GET_AND_RESET_DEV_STATS;
+			flags = BTRFS_DEV_STATS_RESET;
 			break;
 		case '?':
 		default:
@@ -317,12 +317,11 @@ static int cmd_dev_stats(int argc, char **argv)
 
 		args.devid = di_args[i].devid;
 		args.nr_items = BTRFS_DEV_STAT_VALUES_MAX;
+		args.flags = flags;
 
-		if (ioctl(fdmnt, cmd, &args) < 0) {
-			fprintf(stderr, "ERROR: ioctl(%s) on %s failed: %s\n",
-				BTRFS_IOC_GET_AND_RESET_DEV_STATS == cmd ?
-				 "BTRFS_IOC_GET_AND_RESET_DEV_STATS" :
-				 "BTRFS_IOC_GET_DEV_STATS",
+		if (ioctl(fdmnt, BTRFS_IOC_GET_DEV_STATS, &args) < 0) {
+			fprintf(stderr,
+				"ERROR: ioctl(BTRFS_IOC_GET_DEV_STATS) on %s failed: %s\n",
 				path, strerror(errno));
 			err = 1;
 		} else {
