@@ -80,7 +80,7 @@ static u64 parse_size(char *s)
 		}
 		s[len - 1] = '\0';
 	}
-	ret = atol(s) * mult;
+	ret = atoll(s) * mult;
 	free(s);
 	return ret;
 }
