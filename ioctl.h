@@ -365,7 +365,5 @@ struct btrfs_ioctl_get_dev_stats {
 					struct btrfs_ioctl_ino_path_args)
 #define BTRFS_IOC_GET_DEV_STATS _IOWR(BTRFS_IOCTL_MAGIC, 52, \
 				      struct btrfs_ioctl_get_dev_stats)
-#define BTRFS_IOC_GET_AND_RESET_DEV_STATS _IOWR(BTRFS_IOCTL_MAGIC, 53, \
-					       struct btrfs_ioctl_get_dev_stats)
 
 #endif
